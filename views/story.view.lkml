@@ -53,7 +53,7 @@ view: story {
 
   dimension: end_date {
     hidden: yes
-    sql: {% date_end ${publication_date} %} ;;
+    sql: DATE_SUB({% date_end ${publication_date} %}, INTERVAL 1 day) ;;
   }
 
   dimension: periode_str {
