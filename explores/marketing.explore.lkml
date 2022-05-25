@@ -20,5 +20,7 @@ explore: marketing {
      AND ${story.publication_date} = ${channel.datestat_date};;
   }
 
-  sql_always_where: ${story.region} != 'GLOBAL' ;;
+  sql_always_where: ${story.region} != 'GLOBAL'
+    AND ${story.publication_date} BETWEEN ${story.start_date} and ${story.end_date}
+    OR ${story.publication_date} BETWEEN ${story.start_date_previous} and ${story.end_date_previous};;
 }

@@ -140,8 +140,19 @@ view: channel {
   ### MEASURES ###
 
   measure: total_suscribers {
+    group_label: "Subscribers"
     description: "Total description"
+    drill_fields: [channel_name, total_suscribers]
     type: sum
     sql: ${suscribers} ;;
+  }
+
+  measure: avg_suscribers {
+    group_label: "Subscribers"
+    description: "Total description"
+    drill_fields: [channel_name, avg_suscribers]
+    type: number
+    sql: ${total_suscribers} / NULLIF(${story.number_day_in_period_selected}, 0);;
+    value_format_name: decimal_0
   }
 }
