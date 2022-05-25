@@ -136,7 +136,7 @@ view: story {
   measure: total_unique_topsnap_views {
     group_label: "Reach"
     description: "Total unique Topsnap views"
-    drill_fields: [story_name, total_unique_topsnap_views]
+    drill_fields: [channel_name, story_name, total_unique_topsnap_views]
     type: sum
     sql: ${topsnap_unique_views} ;;
   }
