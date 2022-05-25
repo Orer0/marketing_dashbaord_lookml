@@ -35,12 +35,14 @@ view: time_analysis {
   }
 
   dimension: periode_str {
+    group_label: "Time Analysis"
     sql: CONCAT("Periode from ", ${start_date}, " until ", ${end_date}) ;;
     html: <p style="font-size:50%;line-height:1em">{{periode_str._rendered_value}} ;;
   }
 
   dimension: number_day_in_period_selected {
     hidden: yes
+    type: number
     sql: DATE_DIFF(${end_date}, ${start_date}, day) ;;
   }
 

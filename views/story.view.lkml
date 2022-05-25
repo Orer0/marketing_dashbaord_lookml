@@ -3,7 +3,7 @@
 # MAIN USE CASE : Dashboard Reach and Engagement
 
 ### ADDONS INCLUDE ###
-include: "/time_analysis.view.lkml"
+include: "/addons/time_analysis.view.lkml"
 
 view: story {
   sql_table_name: `sandbox-aroblin.marketing.story`
