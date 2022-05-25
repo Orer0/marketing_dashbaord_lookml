@@ -1,5 +1,5 @@
 # OWNER : ARO
-# DESCRIPTION : View - Channel data bq
+# DESCRIPTION : View - Channel data bq Basis
 # MAIN USE CASE : Dashboard Reach and Engagement
 
 view: channel {
@@ -95,20 +95,6 @@ view: channel {
     sql: ${TABLE}.suscribers ;;
   }
 
-  dimension: thematic {
-    ### ARO ###
-    description: "Channel Thematic"
-    sql:
-    CASE
-      WHEN ${channel_name} IN ('Riddle Me This', 'Accuse moi si tu peux')
-        THEN 'Riddle'
-      ELSE
-        'Beauty'
-    END
-    ;;
-    bypass_suggest_restrictions: yes
-  }
-
   dimension: time_spent {
     description: "total_time_viewed_sec / daily_unique"
     type: number
@@ -137,24 +123,5 @@ view: channel {
     description: "Average number of Topsnaps in your Story viewed by Snapchatters"
     type: number
     sql: ${TABLE}.unique_topsnap_per_user ;;
-  }
-
-  ### MEASURES ###
-
-  measure: total_suscribers {
-    group_label: "Subscribers"
-    description: "Total description"
-    drill_fields: [channel_name, total_suscribers]
-    type: sum
-    sql: ${suscribers} ;;
-  }
-
-  measure: avg_suscribers {
-    group_label: "Subscribers"
-    description: "Total description"
-    drill_fields: [channel_name, avg_suscribers]
-    type: number
-    sql: ${total_suscribers} / NULLIF(${story.number_day_in_period_selected}, 0);;
-    value_format_name: decimal_0
   }
 }

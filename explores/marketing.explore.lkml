@@ -3,8 +3,8 @@
 # MAIN USE CASE : Dashboard Reach and Engagement
 
 ### INCLUDE VIEWS ###
-include: "/views/channel.view.lkml"
-include: "/views/story.view.lkml"
+include: "/views/logical/channel_logical.view.lkml"
+include: "/views/logical/story_logical.view.lkml"
 
 explore: marketing {
   view_name: story
