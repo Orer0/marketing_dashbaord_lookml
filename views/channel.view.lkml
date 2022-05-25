@@ -16,6 +16,7 @@ view: channel {
     description: "Name of the channel"
     type: string
     sql: ${TABLE}.channel_name ;;
+    bypass_suggest_restrictions: yes
   }
 
   dimension: daily_unique {
@@ -105,6 +106,7 @@ view: channel {
         'Beauty'
     END
     ;;
+    bypass_suggest_restrictions: yes
   }
 
   dimension: time_spent {

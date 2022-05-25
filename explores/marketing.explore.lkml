@@ -22,5 +22,8 @@ explore: marketing {
 
   sql_always_where: ${story.region} != 'GLOBAL'
     AND ${story.publication_date} BETWEEN ${story.start_date} and ${story.end_date}
-    OR ${story.publication_date} BETWEEN ${story.start_date_previous} and ${story.end_date_previous};;
+    {% if story.analyse_previous_period._parameter_value == 'true' %}
+      OR ${story.publication_date} BETWEEN ${story.start_date_previous} and ${story.end_date_previous}
+    {% endif %}
+    ;;
 }

@@ -2,9 +2,14 @@
 # DESCRIPTION : View - Channel data bq
 # MAIN USE CASE : Dashboard Reach and Engagement
 
+### ADDONS INCLUDE ###
+include: "/time_analysis.view.lkml"
+
 view: story {
   sql_table_name: `sandbox-aroblin.marketing.story`
     ;;
+
+  extends: [time_analysis]
 
   dimension: primary_key {
     primary_key: yes
@@ -46,55 +51,11 @@ view: story {
     sql: ${TABLE}.publication_date ;;
   }
 
-  dimension: start_date {
-    hidden: yes
-    sql: {% date_start ${publication_date}  %} ;;
-  }
-
-  dimension: end_date {
-    hidden: yes
-    sql: {% date_end ${publication_date} %} ;;
-  }
-
-  dimension: start_date_previous {
-    hidden: yes
-    sql: DATE_SUB({% date_start ${publication_date}  %}, INTERVAL 1 MONTH);;
-  }
-
-  dimension: end_date_previous {
-    hidden: yes
-    sql: DATE_SUB({% date_end ${publication_date} %}, INTERVAL 1 MONTH) ;;
-  }
-
-  dimension: periode_str {
-    sql: CONCAT("Periode from ", ${start_date}, " until ", ${end_date}) ;;
-    html: <p style="font-size:50%;line-height:1em">{{periode_str._rendered_value}} ;;
-  }
-
-  dimension: number_day_in_period_selected {
-    hidden: yes
-    sql: DATE_DIFF(${end_date}, ${start_date}, day) ;;
-  }
-
-  dimension: period_pop_straight {
-    group_label: "Time Analysis"
-    label: "Period"
-    description: "Select for Comparison (Pivot)"
-    type: string
-    sql:
-      CASE
-        WHEN ${publication_date} BETWEEN ${start_date} AND ${end_date}
-        THEN 'First Period'
-        WHEN ${publication_date} BETWEEN ${start_date_previous} AND ${end_date_previous}
-        THEN 'Second Period'
-      END
-    ;;
-  }
-
   dimension: region {
     description: "Metrics region of the report. Contains a 'Global' entry in addition to local regions"
     map_layer_name: countries
     sql: ${TABLE}.region ;;
+    bypass_suggest_restrictions: yes
   }
 
   dimension: screenshots {
