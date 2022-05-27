@@ -20,10 +20,21 @@ view: +story {
 
   measure: avg_reach_in_period {
     group_label: "Reach"
-    description: "Average reach during the selected period"
+    label: "Average Reach per day"
+    description: "Average reach by day during the selected period"
     drill_fields: [channel_name, story_name, avg_reach_in_period]
     type: number
     sql: ${total_unique_topsnap_views} / NULLIF(${number_day_in_period_selected}, 0) ;;
+    value_format_name: decimal_0
+  }
+
+  measure: avg_reach {
+    group_label: "Reach"
+    label: "Average Reach"
+    description: "Average reach during the selected period"
+    drill_fields: [channel_name, story_name, avg_reach_in_period]
+    type: average
+    sql: ${topsnap_unique_views} ;;
     value_format_name: decimal_0
   }
 

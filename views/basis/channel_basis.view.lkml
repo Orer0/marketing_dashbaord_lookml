@@ -2,7 +2,10 @@
 # DESCRIPTION : View - Channel data bq Basis
 # MAIN USE CASE : Dashboard Reach and Engagement
 
-view: channel {
+### INCLUDE BASE VIEW ###
+include: "/views/base/channel_base.view.lkml"
+
+view: +channel {
   sql_table_name: `sandbox-aroblin.marketing.channel`
     ;;
 

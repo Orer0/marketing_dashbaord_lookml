@@ -25,7 +25,7 @@ view: +channel {
   ### MEASURES ###
   measure: total_suscribers {
     group_label: "Subscribers"
-    description: "Total description"
+    description: "Total Subscibers"
     drill_fields: [channel_name, total_suscribers]
     type: sum
     sql: ${suscribers} ;;
@@ -33,7 +33,7 @@ view: +channel {
 
   measure: avg_suscribers {
     group_label: "Subscribers"
-    description: "Total description"
+    description: "Average subscribers per day during the selected period"
     drill_fields: [channel_name, avg_suscribers]
     type: number
     sql: ${total_suscribers} / NULLIF(${story.number_day_in_period_selected}, 0);;

@@ -2,15 +2,19 @@
 # DESCRIPTION : Time Analysis - Addons
 
 view: time_analysis {
+  view_label: "Time Analysis"
 
   extension: required
 
   filter: period_time {
+    view_label: "Time Analysis"
     type: date
     suggest_dimension: publication_date
   }
 
   parameter: analyse_previous_period {
+    view_label: "Time Analysis"
+    group_label: "PoP"
     type: yesno
   }
 
@@ -35,19 +39,20 @@ view: time_analysis {
   }
 
   dimension: periode_str {
-    group_label: "Time Analysis"
+    view_label: "Time Analysis"
     sql: CONCAT("Periode from ", ${start_date}, " until ", ${end_date}) ;;
     html: <p style="font-size:50%;line-height:1em">{{periode_str._rendered_value}} ;;
   }
 
   dimension: number_day_in_period_selected {
-    hidden: yes
+    view_label: "Time Analysis"
     type: number
     sql: DATE_DIFF(${end_date}, ${start_date}, day) ;;
   }
 
   dimension: period_pop_straight {
-    group_label: "Time Analysis"
+    view_label: "Time Analysis"
+    group_label: "PoP"
     label: "Period"
     description: "Select for Comparison (Pivot)"
     type: string

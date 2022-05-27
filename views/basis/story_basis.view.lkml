@@ -2,10 +2,13 @@
 # DESCRIPTION : View - Story data bq Basis
 # MAIN USE CASE : Dashboard Reach and Engagement
 
+### INCLUDE BASE VIEW ###
+include: "/views/base/story_base.view.lkml"
+
 ### ADDONS INCLUDE ###
 include: "/addons/time_analysis.view.lkml"
 
-view: story {
+view: +story {
   sql_table_name: `sandbox-aroblin.marketing.story`
     ;;
 
